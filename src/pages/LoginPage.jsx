@@ -15,7 +15,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import axios from "axios";
-
+import backgbImg from "../assets/44224927-learning-word-cloud-business-concept.jpg"
 function Copyright(props) {
   return (
     <Typography
@@ -26,7 +26,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Word Whiz
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -48,6 +48,7 @@ export default function LoginPage() {
     const password = data.get("password");
     try{
       await login({email, password});
+      navigate('/user-management');
 
     }
     catch(error){
@@ -66,7 +67,7 @@ export default function LoginPage() {
           md={7}
           sx={{
             backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
+              `url(${backgbImg})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -128,9 +129,7 @@ export default function LoginPage() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
+                 
                 </Grid>
                 <Grid item>
                   <Link href="/signup" variant="body2">

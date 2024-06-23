@@ -28,15 +28,17 @@ export const AuthContextProvider = ({ children }) => {
   , [accessToken]);
   const login = async (credentials) => {
     try {
-      const response = await axiosInstance.post('/api/auth/login', credentials);
+      const response = await axiosInstance.post('/api/auth/admin/login', credentials);
       const { accessToken } = response.data;
       setAccessToken(accessToken);
-      localStorage.setItem('accessToken', accessToken); // Optionally store token in localStorage
-      navigate('/home'); // Navigate to home after setting the token
+      localStorage.setItem('accessToken', accessToken); 
+      navigate('/home');
     } catch (error) {
       console.error('Login failed:', error);
     }
   };
+
+
 
   const logout = () => {
     setAccessToken(null);
