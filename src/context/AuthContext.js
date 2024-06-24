@@ -32,7 +32,7 @@ export const AuthContextProvider = ({ children }) => {
       const { accessToken } = response.data;
       setAccessToken(accessToken);
       localStorage.setItem('accessToken', accessToken); 
-      navigate('/home');
+      navigate('/user-management');
     } catch (error) {
       console.error('Login failed:', error);
     }

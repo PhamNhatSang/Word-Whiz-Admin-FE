@@ -23,7 +23,7 @@ const items = [
 ].map((icon, index) => ({
   key: String(index + 1),
   icon: React.createElement(icon),
-  label: icon === UserOutlined ? 'User Management' : icon === BookOutlined ? 'Post Mgitanagement' : `Menu ${index + 1}`,
+  label: icon === UserOutlined ? 'User Management' : icon === BookOutlined ? 'Post Management' : `Menu ${index + 1}`,
   onClick: ()=>{
     if(icon === UserOutlined){
       nagative('/user-management');

@@ -5,7 +5,9 @@ import { IconButton } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import {updateUser} from '../api/axios';
+import { useAuth } from "../context/AuthContext";
 export default function UserActionComponent({data,setData,record,deleteUser}) {
+    const { user } = useAuth();
     const getBase64 = (file) =>
         new Promise((resolve, reject) => {
           const reader = new FileReader();
@@ -116,9 +118,9 @@ export default function UserActionComponent({data,setData,record,deleteUser}) {
         <IconButton onClick={() => {setEditingUser(record); setIsModalOpen(true); }}>
             <EditOutlinedIcon style={{ fontSize: '30px', marginRight: 10, color: 'yellow' }} />
         </IconButton>
-        <IconButton onClick={async ()=>{await deleteUser(record?.id)}}>
+       {user.email!=record.email ?<IconButton onClick={async ()=>{await deleteUser(record?.id)}}>
             <DeleteOutlineOutlinedIcon style={{ fontSize: '30px', color: 'red' }} />
-        </IconButton>
+        </IconButton>:''} 
     </span>
     )
 
