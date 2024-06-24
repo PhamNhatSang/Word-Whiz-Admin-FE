@@ -9,13 +9,10 @@ import Grid from "@mui/material/Grid";
 import image from "../assets/Web capture_2-5-2024_91421_www.logoai.com.jpeg";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Navigate } from "react-router-dom";
-import { Alert } from "@mui/material";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from "react-router-dom";
-import { useContext } from 'react';
-import axios from "axios";
-import backgbImg from "../assets/44224927-learning-word-cloud-business-concept.jpg"
+import backgbImg from "../assets/44224927-learning-word-cloud-business-concept.jpg";
+
 function Copyright(props) {
   return (
     <Typography
@@ -34,40 +31,36 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function LoginPage() {
-  const {login} = useAuth();
-  const navigate = useNavigate()
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
-    try{
-      await login({email, password});
+    try {
+      await login({ email, password });
       navigate('/user-management');
-
-    }
-    catch(error){
+    } catch (error) {
       console.error('Login failed:', error);
     }
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid container component="main" sx={{ height: "100vh", justifyContent: 'center', alignItems: 'center' }}>
         <CssBaseline />
         <Grid
           item
-          xs={false}
+          xs={12}
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              `url(${backgbImg})`,
+            backgroundImage: `url(${backgbImg})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -77,7 +70,7 @@ export default function LoginPage() {
             backgroundPosition: "center",
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item className="w-1/2 h-full" component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
@@ -85,12 +78,12 @@ export default function LoginPage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              justifyContent: 'center'
             }}
           >
             <img src={image} alt="logo" />
-            
             <Typography component="h1" variant="h5">
-              Sign in
+              Admin Sign in
             </Typography>
             <Box
               component="form"
@@ -118,7 +111,6 @@ export default function LoginPage() {
                 id="password"
                 autoComplete="current-password"
               />
-            
               <Button
                 type="submit"
                 fullWidth
@@ -128,14 +120,8 @@ export default function LoginPage() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                 
-                </Grid>
-                <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+                <Grid item xs></Grid>
+                <Grid item></Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>
