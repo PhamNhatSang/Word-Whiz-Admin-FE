@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from "react-router-dom";
 import backgbImg from "../assets/44224927-learning-word-cloud-business-concept.jpg";
-
+import { message } from "antd";
 function Copyright(props) {
   return (
     <Typography
@@ -44,9 +44,10 @@ export default function LoginPage() {
     const password = data.get("password");
     try {
       await login({ email, password });
-      navigate('/user-management');
+      message.success("Login successfully");
     } catch (error) {
       console.error('Login failed:', error);
+      message.error("Login failed");
     }
   };
 
